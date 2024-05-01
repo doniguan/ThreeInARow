@@ -23,7 +23,7 @@ onload = function () {
             if (buffer.symbol === '') {
                 buffer.symbol = cells[i].innerHTML
                 buffer.coord = i
-                cells[i].style.backgroundcolor = 'green'
+                // cells[i].style.backgroundcolor = 'green'
             } else {
                 coordsCheck(i)
             }
@@ -36,63 +36,71 @@ function coordsCheck (coord) {
         if (coord !== buffer.coord + 1 && coord !== buffer.coord + 10) {
             clickReset()
         } else {
-
+            cellsSwap(coord)
         }
     }
     if (coord === 9) {
         if (coord !== buffer.coord - 1 && coord !== buffer.coord + 10) {
             clickReset()
         } else {
-            
+            cellsSwap(coord)
         }
     }
     if (coord === 90) {
         if (coord !== buffer.coord + 1 && coord !== buffer.coord - 10) {
             clickReset()
         } else {
-            
+            cellsSwap(coord)
         }
     }
     if (coord === 99) {
         if (coord !== buffer.coord - 1 && coord !== buffer.coord - 10) {
             clickReset()
         } else {
-            
+            cellsSwap(coord)
         }
     }
     if (coord > 0 && coord < 9) {
         if (coord !== buffer.coord + 1 && coord !== buffer.coord + 10 && coord !== buffer.coord - 1) {
             clickReset()
         } else {
-            
+            cellsSwap(coord)
         }
     }
     if (coord > 90 && coord < 99) {
         if (coord !== buffer.coord + 1 && coord !== buffer.coord - 10 && coord !== buffer.coord - 1) {
             clickReset()
         } else {
-            
+            cellsSwap(coord)
         }
     }
     if (coord % 10 === 0 && coord !== 0 && coord !== 90) {
         if (coord !== buffer.coord - 10 && coord !== buffer.coord + 10 && coord !== buffer.coord + 1) {
             clickReset()
         } else {
-            
+            cellsSwap(coord)
         }
     }
     if (coord + 1 % 10 === 0 && coord !== 9 && coord !== 99) {
         if (coord !== buffer.coord - 1 && coord !== buffer.coord + 10 && coord !== buffer.coord - 10) {
             clickReset()
         } else {
-            
+            cellsSwap(coord)
         }
     }
-    console.log("buffer: " + buffer.coord + ", " + buffer.symbol)
+    cellsSwap(coord)
 }
 
 function clickReset () {
     buffer.coord = null
     buffer.symbol = ''
     console.log('reseted: ' + buffer.coord + ", " + buffer.symbol)
+}
+
+function cellsSwap (coord) {
+    cells[buffer.coord].innerHTML = cells[coord].innerHTML
+    cells[coord].innerHTML = buffer.symbol
+    buffer.coord = null
+    buffer.symbol = ''
+    console.log('s')
 }
