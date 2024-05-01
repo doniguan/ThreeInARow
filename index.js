@@ -134,3 +134,23 @@ function cellsSwap (coord) {
     buffer.coord = null
     buffer.symbol = ''
 }
+
+function threeInARowCheck () {
+
+}
+
+function tableFulfill () {
+
+}
+
+function cellsDelete () {
+
+}
+
+function newCellsFulfill () {
+
+}
+
+function scoresCounter () {
+    
+}
