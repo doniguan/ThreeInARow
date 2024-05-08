@@ -132,7 +132,16 @@ function cellsSwap (coord) {
 }
 
 function threeInARowCheck () {
-
+    for (let i = 0; i < cells.length; i++) {
+        if (i = 0) {
+            if ((cells[i].innerHTML === cells[i + 1].innerHTML && cells[i].innerHTML === cells [i + 2].innerHTML)
+                || (cells[i].innerHTML === cells[i + 10].innerHTML && cells[i] === cells[i + 20].innerHTML)) {
+            return true
+        } else {
+            return false
+        }
+        }
+    }
 }
 
 function tableFulfill () {
