@@ -11,7 +11,7 @@ let buffer = {
     symbol: ''
 }
 
-let scoresCounter
+let scores
 
 onload = function () {
 
@@ -105,14 +105,10 @@ function coordsCheck (coord) {
         }
     }
         if (coord !== buffer.coord - 1 &&
-            coord !== buffer.coord - 11 &&
             coord !== buffer.coord - 10 &&
-            coord !== buffer.coord - 9 &&
             coord !== buffer.coord + 1 &&
-            coord !== buffer.coord + 9 &&
-            coord !== buffer.coord + 10 &&
-            coord !== buffer.coord + 11) {
-            console.log('s')
+            coord !== buffer.coord + 10)
+            {
             clickReset()
             return false
         } else {
