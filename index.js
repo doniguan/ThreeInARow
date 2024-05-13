@@ -32,89 +32,15 @@ onload = function () {
 }
 
 function coordsCheck (coord) {
-    if (coord === 0) {
-        if (coord !== buffer.coord + 1 && coord !== buffer.coord + 10) {
-            clickReset()
-            return false
-        } else {
-            cellsSwap(coord)
-        }
-    }
-    if (coord === 9) {
-        if (coord !== buffer.coord - 1 && coord !== buffer.coord + 10) {
-            clickReset()
-            return false
-        } else {
-            cellsSwap(coord)
-            return true
-        }
-    }
-    if (coord === 90) {
-        if (coord !== buffer.coord + 1 && coord !== buffer.coord - 10) {
-            clickReset()
-            return false
-        } else {
-            cellsSwap(coord)
-            return true
-        }
-    }
-    if (coord === 99) {
-        if (coord !== buffer.coord - 1 && coord !== buffer.coord - 10) {
-            clickReset()
-            return false
-        } else {
-            cellsSwap(coord)
-            return true
-        }
-    }
-    if (coord > 0 && coord < 9) {
-        if (coord !== buffer.coord + 1 && coord !== buffer.coord + 10 && coord !== buffer.coord - 1) {
-            clickReset()
-            return false
-        } else {
-            cellsSwap(coord)
-            return true
-        }
-    }
-    if (coord > 90 && coord < 99) {
-        if (coord !== buffer.coord + 1 && coord !== buffer.coord - 10 && coord !== buffer.coord - 1) {
-            clickReset()
-            return false
-        } else {
-            cellsSwap(coord)
-            return true
-        }
-    }
-    if (coord % 10 === 0 && coord !== 0 && coord !== 90) {
-        if (coord !== buffer.coord - 10 && coord !== buffer.coord + 10 && coord !== buffer.coord + 1) {
-            clickReset()
-            return false
-        } else {
-            cellsSwap(coord)
-            return true
-        }
-    }
-    if (coord + 1 % 10 === 0 && coord !== 9 && coord !== 99) {
-        if (coord !== buffer.coord - 1 && coord !== buffer.coord + 10 && coord !== buffer.coord - 10) {
-            console.log('s')
-            clickReset()
-            return false
-        } else {
-            cellsSwap(coord)
-            return true
-        }
-    }
-        if (coord !== buffer.coord - 1 &&
-            coord !== buffer.coord - 10 &&
-            coord !== buffer.coord + 1 &&
-            coord !== buffer.coord + 10)
-            {
-            clickReset()
-            return false
-        } else {
-            cellsSwap(coord)
-            return true
-        }
+
+  if (coord !== buffer.coord + 1 && coord != buffer.coord - 1 && coord !== buffer.coord + 10 && coord !== buffer.coord - 10) {
+    clickReset()
+    return false
+  } else {
+    cellsSwap(coord)
+    threeInARowCheck()
+    return true
+  }
 }
 
 function clickReset () {
@@ -132,15 +58,26 @@ function cellsSwap (coord) {
 }
 
 function threeInARowCheck () {
-    for (let i = 0; i < cells.length; i++) {
-        if (i = 0) {
-            if ((cells[i].innerHTML === cells[i + 1].innerHTML && cells[i].innerHTML === cells [i + 2].innerHTML)
-                || (cells[i].innerHTML === cells[i + 10].innerHTML && cells[i] === cells[i + 20].innerHTML)) {
-            return true
-        } else {
-            return false
-        }
-        }
+    for (let i = 0; i < cells.length/10 - 2; i++) {
+      console.log('i')
+      for (let j = 0; j < cells.length; j ++) {
+        console.log('j')
+      }
+      if ((cells[i].innerHTML === cells[i + 1].innerHTML && cells[i].innerHTML === cells [i + 2].innerHTML)) {
+        console.log('true')
+      } else {
+        console.log('false')
+      }
+      //         || (cells[i].innerHTML === cells[i + 10].innerHTML && cells[i] === cells[i + 20].innerHTML))
+        // if (i = 0) {
+        //     if ((cells[i].innerHTML === cells[i + 1].innerHTML && cells[i].innerHTML === cells [i + 2].innerHTML)
+        //         || (cells[i].innerHTML === cells[i + 10].innerHTML && cells[i] === cells[i + 20].innerHTML)) {
+        //       console.log('true')
+        //     return true
+        // } else {
+        //     return false
+        // }
+        // }
     }
 }
 
