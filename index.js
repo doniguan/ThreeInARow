@@ -62,33 +62,29 @@ function threeInARowCheck () {
       for (let j = 0; j < 8; j ++) {
         if (cells[i * 10 + j].innerHTML === cells[i * 10 + j + 1].innerHTML &&
           cells[i * 10 + j].innerHTML === cells[i * 10 + j + 2].innerHTML) {
-          cellsDelete()
+          cellsDelete(i * 10 + j, i * 10 + j + 1, i * 10 + j + 2)
+          return true
         }
         if (cells[j * 10 + i].innerHTML === cells[j * 10 + i + 10].innerHTML &&
           cells[j * 10 + i].innerHTML === cells[j * 10 + i + 20].innerHTML) {
-            console.log('true')
-          cellsDelete()
+          cellsDelete(j * 10 + i, j * 1- + i + 10, j * 10 + i + 20)
+          return true
         }
       }
-      //         || (cells[i].innerHTML === cells[i + 10].innerHTML && cells[i] === cells[i + 20].innerHTML))
-        // if (i = 0) {
-        //     if ((cells[i].innerHTML === cells[i + 1].innerHTML && cells[i].innerHTML === cells [i + 2].innerHTML)
-        //         || (cells[i].innerHTML === cells[i + 10].innerHTML && cells[i] === cells[i + 20].innerHTML)) {
-        //       console.log('true')
-        //     return true
-        // } else {
-        //     return false
-        // }
-        // }
     }
+    return false
 }
 
 function tableFulfill () {
 
 }
 
-function cellsDelete () {
-
+function cellsDelete (first, second, third) {
+  cells[first].innerHTML = ''
+  cells[second].innerHTML = ''
+  cells[third].innerHTML = ''
+  newCellsFulfill()
+  threeInARowCheck()
 }
 
 function newCellsFulfill () {
