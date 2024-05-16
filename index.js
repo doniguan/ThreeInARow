@@ -58,15 +58,17 @@ function cellsSwap (coord) {
 }
 
 function threeInARowCheck () {
-    for (let i = 0; i < cells.length/10 - 2; i++) {
-      console.log('i')
-      for (let j = 0; j < cells.length; j ++) {
-        console.log('j')
-      }
-      if ((cells[i].innerHTML === cells[i + 1].innerHTML && cells[i].innerHTML === cells [i + 2].innerHTML)) {
-        console.log('true')
-      } else {
-        console.log('false')
+    for (let i = 0; i < cells.length/10; i++) {
+      for (let j = 0; j < 8; j ++) {
+        if (cells[i * 10 + j].innerHTML === cells[i * 10 + j + 1].innerHTML &&
+          cells[i * 10 + j].innerHTML === cells[i * 10 + j + 2].innerHTML) {
+          cellsDelete()
+        }
+        if (cells[j * 10 + i].innerHTML === cells[j * 10 + i + 10].innerHTML &&
+          cells[j * 10 + i].innerHTML === cells[j * 10 + i + 20].innerHTML) {
+            console.log('true')
+          cellsDelete()
+        }
       }
       //         || (cells[i].innerHTML === cells[i + 10].innerHTML && cells[i] === cells[i + 20].innerHTML))
         // if (i = 0) {
