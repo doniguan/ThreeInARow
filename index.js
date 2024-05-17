@@ -13,7 +13,6 @@ onload = function () {
     cells = document.getElementsByClassName('cell')
     for (let i = 0; i < cells.length; i++) {
         oneCellFulfillling(i)
-        console.log(cells[i].innerHTML)
         cells[i].addEventListener('click', function () {
             if (buffer.symbol === '') {
                 buffer.symbol = cells[i].innerHTML
@@ -23,6 +22,9 @@ onload = function () {
                 coordsCheck(i)
             }
           })
+    }
+    while (checkHelper() === false) {
+    checkForThreeOnStart()
     }
 }
 
@@ -84,7 +86,6 @@ function cellsDelete (first, second, third) {
 
 function newCellsFulfill () {
   for (let i = cells.length - 1; i >= 0; i--) {
-    console.log(i)
     if(cells[i].innerHTML === '') {
       cellMovingDown(i)
     }
@@ -102,19 +103,40 @@ function cellMovingDown(coord) {
   if (coord < 10) {
     oneCellFulfillling (coord)
   }
-
-
-
-  // if (coord < 90 && !cells[coord + 10].hasChildNodes() || coord > 89) {
-  //   console.log(coord)
-  //   cells[coord + 10].innerHTML = cells[coord]
-  // } else {
-  //   cellMovingDown(coord + 10)
-  // }
 }
 
 function oneCellFulfillling(coord) {
   cells[coord].innerHTML = icons[Math.round(Math.random() * 5)]
+}
+
+function checkForThreeOnStart () {
+  for (let i = 0; i < cells.length/10; i++) {
+    for (let j = 0; j < 8; j ++) {
+      if (cells[i * 10 + j].innerHTML === cells[i * 10 + j + 1].innerHTML &&
+        cells[i * 10 + j].innerHTML === cells[i * 10 + j + 2].innerHTML) {
+          oneCellFulfillling(i * 10 + j)
+      }
+      if (cells[j * 10 + i].innerHTML === cells[j * 10 + i + 10].innerHTML &&
+        cells[j * 10 + i].innerHTML === cells[j * 10 + i + 20].innerHTML) {
+        oneCellFulfillling(j * 10 + i)
+      }
+    }
+  }
+}
+
+function checkHelper() {
+  for (let i = 0; i < cells.length/10; i++) {
+    for (let j = 0; j < 8; j ++) {
+      if (cells[i * 10 + j].innerHTML === cells[i * 10 + j + 1].innerHTML &&
+        cells[i * 10 + j].innerHTML === cells[i * 10 + j + 2].innerHTML) {
+          return false
+      }
+      if (cells[j * 10 + i].innerHTML === cells[j * 10 + i + 10].innerHTML &&
+        cells[j * 10 + i].innerHTML === cells[j * 10 + i + 20].innerHTML) {
+        return false
+      }
+    }
+  }
 }
 
 function scoresCounter () {
