@@ -1,12 +1,20 @@
+//сделать правильный подсчёт очков - за большие ряды больше очков, за несколько рядов сразу, за несколько рядов подряд мультиплаер
+//вывести счётчик очков
+//сделать задержку исчезновения и спускания вниз
+//сделать визуал
+//починить обмен ячейками на краях поля
+//cellsDelete -> cellsFulfiling, возможно, лишний шаг
+
+
 let cells = []
 let icons = ['1', '2', '3', '4', '5', '6']
+let scoresMultiplyer = 0
+let scores = 0
 
 let buffer = {
     coord: null,
     symbol: ''
 }
-
-let scores
 
 onload = function () {
 
@@ -72,16 +80,13 @@ function threeInARowCheck () {
     return false
 }
 
-function tableFulfill () {
-
-}
-
 function cellsDelete (first, second, third) {
   cells[first].innerHTML = ''
   cells[second].innerHTML = ''
   cells[third].innerHTML = ''
   newCellsFulfill()
   threeInARowCheck()
+  scoresMultiplyer++
 }
 
 function newCellsFulfill () {
