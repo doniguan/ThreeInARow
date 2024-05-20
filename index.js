@@ -38,6 +38,10 @@ onload = function () {
 
 function coordsCheck (coord) {
 
+  if(coord % 10 === 0 && (buffer.coord + 1) % 10 === 0 || buffer.coord % 10 === 0 && (coord + 1) % 10 === 0) {
+    clickReset()
+    return false
+  }
   if (coord !== buffer.coord + 1 && coord != buffer.coord - 1 && coord !== buffer.coord + 10 && coord !== buffer.coord - 10) {
     clickReset()
     return false
