@@ -1,8 +1,6 @@
 //сделать правильный подсчёт очков - за большие ряды больше очков, за несколько рядов сразу, за несколько рядов подряд мультиплаер
-//вывести счётчик очков
 //сделать задержку исчезновения и спускания вниз
 //сделать визуал
-//починить обмен ячейками на краях поля
 //cellsDelete -> cellsFulfiling, возможно, лишний шаг
 
 
@@ -10,6 +8,7 @@ let cells = []
 let icons = ['1', '2', '3', '4', '5', '6']
 let scoresMultiplyer = 0
 let scores = 0
+let scoresCell
 
 let buffer = {
     coord: null,
@@ -18,22 +17,24 @@ let buffer = {
 
 onload = function () {
 
-    cells = document.getElementsByClassName('cell')
-    for (let i = 0; i < cells.length; i++) {
-        oneCellFulfillling(i)
-        cells[i].addEventListener('click', function () {
-            if (buffer.symbol === '') {
-                buffer.symbol = cells[i].innerHTML
-                buffer.coord = i
-                cells[i].style.backgroundColor = '#50a049'
-            } else {
-                coordsCheck(i)
-            }
-          })
-    }
-    while (checkHelper() === false) {
-    checkForThreeOnStart()
-    }
+  scoresCell = document.getElementById('scores')
+  scoresCell.innerHTML = scores
+  cells = document.getElementsByClassName('cell')
+  for (let i = 0; i < cells.length; i++) {
+      oneCellFulfillling(i)
+      cells[i].addEventListener('click', function () {
+          if (buffer.symbol === '') {
+              buffer.symbol = cells[i].innerHTML
+              buffer.coord = i
+              cells[i].style.backgroundColor = '#50a049'
+          } else {
+              coordsCheck(i)
+          }
+        })
+  }
+  while (checkHelper() === false) {
+  checkForThreeOnStart()
+  }
 }
 
 function coordsCheck (coord) {
